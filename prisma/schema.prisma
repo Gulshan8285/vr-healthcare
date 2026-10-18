@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         String   @default("admin")
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Enquiry {
+  id                     String    @id @default(cuid())
+  referenceNumber        String    @unique
+  customerName           String
+  phone                  String
+  email                  String?
+  requiredService        String
+  message                String?
+  preferredContactMethod String?   @default("phone")
+  preferredTime          String?
+  privacyConsent         Boolean   @default(true)
+  status                 String    @default("New") // New, Contacted, Follow-up Required, In Discussion, Converted, Closed, Spam
+  internalNotes          String?
+  followUpDate           DateTime?
+  ipAddress              String?
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+  @@index([phone])
+}
+
+model Service {
+  id               String   @id @default(cuid())
+  title            String
+  slug             String   @unique
+  shortDescription String
+  fullDescription  String
+  icon             String   @default("HeartHandshake")
+  features         String?  // JSON formatted or comma-separated list of points
+  active           Boolean  @default(true)
+  displayOrder     Int      @default(0)
+  seoTitle         String?
+  seoDescription   String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([displayOrder])
+}
+
+model WebsiteSettings {
+  id               String   @id @default("default")
+  businessName     String   @default("VR Healthcare")
+  tagline          String   @default("Compassionate Home Care for Your Loved Ones")
+  logoText         String   @default("VR Healthcare")
+  logoUrl          String?
+  phone            String   @default("+91 98765 43210")
+  whatsappNumber   String   @default("+91 98765 43210")
+  email            String   @default("care@vrhealthcare.com")
+  serviceLocation  String   @default("Delhi NCR & Neighbouring Regions")
+  businessHours    String   @default("Mon - Sun: 8:00 AM - 8:00 PM (Care Coordination Available)")
+  
+  heroHeadline     String   @default("Compassionate Home Care for Your Loved Ones")
+  heroSupporting   String   @default("Reliable home-care support designed to help individuals and families with everyday care, personal assistance, and support at home.")
+  
+  welcomeHeadline  String   @default("Welcome to VR Healthcare")
+  welcomeText      String   @default("At VR Healthcare, we understand how important it is to find dependable support for your loved ones. Our aim is to make arranging home-care assistance simpler by helping families explore suitable care options based on their needs and service availability.")
+  
+  aboutMission     String   @default("Our mission is to provide reliable and compassionate home-care support that helps individuals and families manage everyday care needs with greater confidence and peace of mind.")
+  aboutApproach    String   @default("We prioritize respecting individual needs, communicating transparently with families, thoroughly understanding requirements before service coordination, and treating every client with utmost dignity.")
+  aboutCommitment  String   @default("We are dedicated to honest communication, clear service terms, and dedicated coordination to ensure peace of mind for families.")
+  
+  footerText       String   @default("VR Healthcare provides dedicated home-care assistance, elderly support, patient attendants, and home care coordination with dignity and care.")
+  seoTitle         String   @default("VR Healthcare | Compassionate Home Care & Patient Support")
+  seoDescription   String   @default("Professional home healthcare, patient care assistance, elderly care, patient attendants, and housekeeping services.")
+  
+  updatedAt        DateTime @updatedAt
+}
+
+model FAQ {
+  id           String   @id @default(cuid())
+  question     String
+  answer       String
+  active       Boolean  @default(true)
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([displayOrder])
+}
+
+model ContentPage {
+  id             String   @id @default(cuid())
+  title          String
+  slug           String   @unique
+  content        String
+  seoTitle       String?
+  seoDescription String?
+  published      Boolean  @default(true)
+  updatedAt      DateTime @updatedAt
+}
