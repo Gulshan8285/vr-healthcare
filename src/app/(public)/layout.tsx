@@ -1,9 +1,9 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
+import MobileBottomBar from "@/components/MobileBottomBar";
+import EnquiryDrawer from "@/components/EnquiryDrawer";
 import { getWebsiteSettings } from "@/lib/data";
-
-// Public pages layout
 
 export default async function PublicLayout({
   children,
@@ -17,7 +17,15 @@ export default async function PublicLayout({
       <Navbar phone={settings.phone} whatsapp={settings.whatsappNumber} />
       <main className="flex-grow">{children}</main>
       <Footer settings={settings} />
+
+      {/* Floating WhatsApp for desktop & tablet */}
       <WhatsAppFloatingButton whatsappNumber={settings.whatsappNumber} />
+
+      {/* Sticky Quick-Action Bar for mobile devices */}
+      <MobileBottomBar phone={settings.phone} whatsapp={settings.whatsappNumber} />
+
+      {/* Global Slide-Over Enquiry Drawer */}
+      <EnquiryDrawer />
     </div>
   );
 }

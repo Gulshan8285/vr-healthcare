@@ -20,19 +20,44 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* 24/7 Top Marquee Ticker Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
 /* Custom Healthcare Utility Enhancements */
 .hero-gradient {
   background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 50%, #ffffff 100%);
 }
 
-.medical-subtle-glow {
-  box-shadow: 0 10px 25px -5px rgba(13, 148, 136, 0.08), 0 8px 10px -6px rgba(13, 148, 136, 0.04);
-}
-
 .card-hover-effect {
-  transition: all 0.2s ease-in-out;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .card-hover-effect:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 24px -6px rgba(15, 41, 66, 0.08);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px -6px rgba(15, 41, 66, 0.09);
+}
+
+/* Hide scrollbars for mobile horizontal swipers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

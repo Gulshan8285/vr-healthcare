@@ -14,6 +14,8 @@ import {
   ArrowRight,
   PhoneCall,
 } from "lucide-react";
+import ServiceCardAction from "@/components/ServiceCardAction";
+import HeroEnquiryAction from "@/components/HeroEnquiryAction";
 
 export default async function ServicesPage() {
   const services = await getServices();
@@ -75,13 +77,7 @@ export default async function ServicesPage() {
                 Every client has unique comfort, mobility, and schedule requirements. We consult with families to understand expectations and coordinate the right attendant assistance.
               </p>
               <div className="pt-2">
-                <a
-                  href="#service-enquiry"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold rounded-xl text-sm transition-colors"
-                >
-                  <span>Request a Service Discussion</span>
-                  <ArrowRight className="w-4 h-4" />
-                </a>
+                <HeroEnquiryAction secondary />
               </div>
             </div>
             <div className="lg:col-span-5 relative h-64 lg:h-80">
@@ -129,13 +125,9 @@ export default async function ServicesPage() {
                     </div>
                   </div>
 
-                  <a
-                    href={`#service-enquiry?service=${encodeURIComponent(service.title)}`}
-                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-xs font-bold text-white bg-teal-600 hover:bg-teal-700 rounded-xl shadow-xs transition-colors shrink-0"
-                  >
-                    <span>Enquire About This Service</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </a>
+                  <div className="shrink-0">
+                    <ServiceCardAction serviceTitle={service.title} />
+                  </div>
                 </div>
 
                 <div className="mt-6 grid grid-cols-1 lg:grid-cols-12 gap-8">

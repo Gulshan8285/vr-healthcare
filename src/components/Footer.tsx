@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Logo from "./Logo";
-import { Phone, Mail, MapPin, MessageCircle, Clock, ShieldCheck, Heart } from "lucide-react";
+import WhatsAppIcon from "./WhatsAppIcon";
+import { Phone, Mail, MapPin, Clock, ShieldCheck, Heart } from "lucide-react";
 
 interface FooterProps {
   settings?: {
@@ -20,14 +21,16 @@ export default function Footer({ settings }: FooterProps) {
   const whatsapp = settings?.whatsappNumber || "+91 98765 43210";
   const email = settings?.email || "care@vrhealthcare.com";
   const location = settings?.serviceLocation || "Delhi NCR & Neighbouring Regions";
-  const hours = settings?.businessHours || "Monday - Sunday: 8:00 AM - 8:00 PM";
+  const hours = settings?.businessHours || "24/7 Care Coordination Available";
   const footerText =
     settings?.footerText ||
     "VR Healthcare provides dependable, compassionate home-care support, patient attendants, and elderly assistance designed around your family's needs.";
 
   const telLink = `tel:${phone.replace(/[^0-9+]/g, "")}`;
   const waClean = whatsapp.replace(/[^0-9]/g, "");
-  const waMessage = encodeURIComponent("Hello VR Healthcare, I would like to enquire about your home-care services.");
+  const waMessage = encodeURIComponent(
+    "Hello VR Healthcare, I would like to enquire about your home-care services."
+  );
   const waLink = `https://wa.me/${waClean}?text=${waMessage}`;
   const mailLink = `mailto:${email}`;
 
@@ -41,32 +44,33 @@ export default function Footer({ settings }: FooterProps) {
   ];
 
   return (
-    <footer className="bg-slate-950 text-slate-300 pt-16 pb-12 border-t border-slate-800">
+    <footer className="bg-slate-950 text-slate-300 pt-16 pb-28 md:pb-14 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-12">
+        {/* Main 4 Column Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-12">
           {/* Col 1: Brand & About */}
           <div className="space-y-4">
             <Logo light />
-            <p className="text-sm text-slate-400 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
               {footerText}
             </p>
-            <div className="pt-2 flex items-center gap-2 text-xs text-teal-400 font-medium">
-              <ShieldCheck className="w-4 h-4" />
-              <span>Compassionate Family-Centric Support</span>
+            <div className="pt-1 flex items-center gap-2 text-xs text-teal-400 font-semibold">
+              <ShieldCheck className="w-4 h-4 shrink-0" />
+              <span>Compassionate Family Care Coordination</span>
             </div>
           </div>
 
           {/* Col 2: Services */}
           <div>
-            <h3 className="text-white text-sm font-semibold tracking-wider uppercase mb-4">
-              Our Home Services
+            <h3 className="text-white text-xs font-bold tracking-widest uppercase mb-4 text-teal-400">
+              Home Services
             </h3>
-            <ul className="space-y-2.5 text-sm">
+            <ul className="space-y-2.5 text-xs sm:text-sm">
               {serviceLinks.map((service) => (
                 <li key={service.name}>
                   <Link
                     href={service.href}
-                    className="hover:text-teal-400 transition-colors inline-block"
+                    className="text-slate-400 hover:text-teal-300 transition-colors inline-block"
                   >
                     {service.name}
                   </Link>
@@ -77,43 +81,43 @@ export default function Footer({ settings }: FooterProps) {
 
           {/* Col 3: Quick Navigation */}
           <div>
-            <h3 className="text-white text-sm font-semibold tracking-wider uppercase mb-4">
+            <h3 className="text-white text-xs font-bold tracking-widest uppercase mb-4 text-teal-400">
               Quick Links
             </h3>
-            <ul className="space-y-2.5 text-sm">
+            <ul className="space-y-2.5 text-xs sm:text-sm">
               <li>
-                <Link href="/" className="hover:text-teal-400 transition-colors">
+                <Link href="/" className="text-slate-400 hover:text-teal-300 transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/about-us" className="hover:text-teal-400 transition-colors">
+                <Link href="/about-us" className="text-slate-400 hover:text-teal-300 transition-colors">
                   About VR Healthcare
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="hover:text-teal-400 transition-colors">
+                <Link href="/services" className="text-slate-400 hover:text-teal-300 transition-colors">
                   All Services
                 </Link>
               </li>
               <li>
-                <Link href="/contact-us" className="hover:text-teal-400 transition-colors">
+                <Link href="/contact-us" className="text-slate-400 hover:text-teal-300 transition-colors">
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link href="/#faq" className="hover:text-teal-400 transition-colors">
+                <Link href="/#faq" className="text-slate-400 hover:text-teal-300 transition-colors">
                   Frequently Asked Questions
                 </Link>
               </li>
               <li>
-                <Link href="/privacy-policy" className="hover:text-teal-400 transition-colors">
+                <Link href="/privacy-policy" className="text-slate-400 hover:text-teal-300 transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms-and-conditions" className="hover:text-teal-400 transition-colors">
-                  Terms and Conditions
+                <Link href="/terms-and-conditions" className="text-slate-400 hover:text-teal-300 transition-colors">
+                  Terms & Conditions
                 </Link>
               </li>
             </ul>
@@ -121,29 +125,29 @@ export default function Footer({ settings }: FooterProps) {
 
           {/* Col 4: Contact & Coordination */}
           <div>
-            <h3 className="text-white text-sm font-semibold tracking-wider uppercase mb-4">
-              Care Coordination
+            <h3 className="text-white text-xs font-bold tracking-widest uppercase mb-4 text-teal-400">
+              24/7 Care Coordination
             </h3>
-            <div className="space-y-3.5 text-sm">
+            <div className="space-y-3.5 text-xs sm:text-sm">
               <div className="flex items-start gap-3">
-                <Phone className="w-4 h-4 text-teal-400 mt-1 shrink-0" />
+                <Phone className="w-4 h-4 text-teal-400 mt-0.5 shrink-0" />
                 <div>
-                  <span className="block text-xs text-slate-400">Phone Support</span>
-                  <a href={telLink} className="text-white font-medium hover:text-teal-400 transition-colors">
+                  <span className="block text-[11px] text-slate-400 font-medium">Direct Phone (24/7)</span>
+                  <a href={telLink} className="text-white font-bold hover:text-teal-300 transition-colors">
                     {phone}
                   </a>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
-                <MessageCircle className="w-4 h-4 text-emerald-400 mt-1 shrink-0" />
+                <WhatsAppIcon className="w-4 h-4 fill-[#25D366] mt-0.5 shrink-0" />
                 <div>
-                  <span className="block text-xs text-slate-400">WhatsApp Chat</span>
+                  <span className="block text-[11px] text-slate-400 font-medium">WhatsApp Assistance</span>
                   <a
                     href={waLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white font-medium hover:text-emerald-400 transition-colors"
+                    className="text-white font-bold hover:text-emerald-400 transition-colors"
                   >
                     {whatsapp}
                   </a>
@@ -151,27 +155,27 @@ export default function Footer({ settings }: FooterProps) {
               </div>
 
               <div className="flex items-start gap-3">
-                <Mail className="w-4 h-4 text-teal-400 mt-1 shrink-0" />
+                <Mail className="w-4 h-4 text-teal-400 mt-0.5 shrink-0" />
                 <div>
-                  <span className="block text-xs text-slate-400">Email</span>
-                  <a href={mailLink} className="text-white font-medium hover:text-teal-400 transition-colors">
+                  <span className="block text-[11px] text-slate-400 font-medium">Email</span>
+                  <a href={mailLink} className="text-white font-medium hover:text-teal-300 transition-colors">
                     {email}
                   </a>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-teal-400 mt-1 shrink-0" />
+                <MapPin className="w-4 h-4 text-teal-400 mt-0.5 shrink-0" />
                 <div>
-                  <span className="block text-xs text-slate-400">Service Coverage</span>
-                  <span className="text-slate-300">{location}</span>
+                  <span className="block text-[11px] text-slate-400 font-medium">Coverage Area</span>
+                  <span className="text-slate-300 text-xs">{location}</span>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
-                <Clock className="w-4 h-4 text-teal-400 mt-1 shrink-0" />
+                <Clock className="w-4 h-4 text-teal-400 mt-0.5 shrink-0" />
                 <div>
-                  <span className="block text-xs text-slate-400">Hours</span>
+                  <span className="block text-[11px] text-slate-400 font-medium">Availability</span>
                   <span className="text-slate-300 text-xs">{hours}</span>
                 </div>
               </div>
@@ -179,32 +183,45 @@ export default function Footer({ settings }: FooterProps) {
           </div>
         </div>
 
-        {/* Disclaimer strip */}
-        <div className="py-4 border-t border-slate-800 text-xs text-slate-400 leading-relaxed">
-          <p>
-            <strong>Service Notice:</strong> Care attendants and supportive caregivers provide non-clinical daily living assistance and companionship. In case of acute clinical conditions, medication changes, or medical emergencies, please consult a certified doctor or contact your nearest emergency medical facility. Day and night care arrangements are subject to staff availability.
-          </p>
+        {/* User requested: Service note in clean single line */}
+        <div className="py-3 px-4 rounded-xl bg-slate-900/90 border border-slate-800 text-[11px] text-slate-400 leading-normal text-center mb-8">
+          <strong>Service Notice:</strong> Non-clinical attendants provide everyday home care assistance. Medical procedures and clinical treatments must strictly be administered by certified doctors.
         </div>
 
-        {/* Bottom copyright & admin login */}
-        <div className="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
-          <p className="flex items-center gap-1.5">
-            &copy; {currentYear} VR Healthcare. All rights reserved. Made with <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" /> for families.
-          </p>
-          <div className="flex items-center gap-4">
+        {/* Bottom copyright and explicit Created by codeorbit.cloud */}
+        <div className="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4 text-center sm:text-left">
+          <div>
+            <p>
+              &copy; {currentYear} VR Healthcare. All rights reserved.
+            </p>
+            {/* Explicitly requested credit */}
+            <p className="text-[11px] text-slate-400 mt-0.5">
+              Website designed &amp; developed by{" "}
+              <a
+                href="https://codeorbit.cloud"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-teal-400 font-bold hover:text-teal-300 underline underline-offset-2"
+              >
+                codeorbit.cloud
+              </a>
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-3 text-xs">
             <Link href="/privacy-policy" className="hover:text-slate-300 transition-colors">
               Privacy Policy
             </Link>
             <span>•</span>
             <Link href="/terms-and-conditions" className="hover:text-slate-300 transition-colors">
-              Terms & Conditions
+              Terms &amp; Conditions
             </Link>
             <span>•</span>
             <Link
               href="/admin/login"
               className="text-slate-400 hover:text-teal-400 transition-colors"
             >
-              Staff Login
+              Staff Portal
             </Link>
           </div>
         </div>

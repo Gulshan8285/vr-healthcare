@@ -1,6 +1,6 @@
 "use client";
 
-import { MessageCircle } from "lucide-react";
+import WhatsAppIcon from "./WhatsAppIcon";
 
 interface WhatsAppFloatingButtonProps {
   whatsappNumber?: string;
@@ -16,17 +16,24 @@ export default function WhatsAppFloatingButton({
   const waUrl = `https://wa.me/${cleanNumber}?text=${message}`;
 
   return (
-    <aside aria-label="Quick contact" className="fixed bottom-6 right-6 z-40 group">
+    <aside
+      aria-label="Quick WhatsApp contact"
+      className="hidden sm:block fixed bottom-6 right-6 z-40 group"
+    >
       <a
         href={waUrl}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with VR Healthcare on WhatsApp"
-        className="flex items-center gap-2.5 px-4 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full shadow-lg shadow-emerald-600/30 hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200"
+        className="relative flex items-center gap-2.5 px-4 py-3 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-full shadow-lg shadow-emerald-500/30 hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200"
       >
-        <MessageCircle className="w-5 h-5 fill-white" />
-        <span className="text-xs font-bold tracking-wide hidden sm:inline">
-          WhatsApp Support
+        <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-200"></span>
+        </span>
+        <WhatsAppIcon className="w-5 h-5 fill-white shrink-0" />
+        <span className="text-xs font-bold tracking-wide">
+          Chat on WhatsApp
         </span>
       </a>
     </aside>

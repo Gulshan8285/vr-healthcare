@@ -4,7 +4,6 @@ import {
   Heart,
   Shield,
   Phone,
-  MessageCircle,
   ArrowRight,
   Clock,
   CheckCircle2,
@@ -15,9 +14,14 @@ import {
   ShieldAlert,
   CalendarCheck,
   Users,
+  Star,
 } from "lucide-react";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
 import EnquiryForm from "@/components/EnquiryForm";
 import FAQAccordion from "@/components/FAQAccordion";
+import ReviewsSection from "@/components/ReviewsSection";
+import ServiceCardAction from "@/components/ServiceCardAction";
+import HeroEnquiryAction from "@/components/HeroEnquiryAction";
 import { getWebsiteSettings, getServices, getFAQs } from "@/lib/data";
 
 export default async function HomePage() {
@@ -33,7 +37,6 @@ export default async function HomePage() {
     "Hello VR Healthcare, I would like to enquire about your home-care services."
   )}`;
 
-  // Icon mapping helper
   const renderIcon = (iconName: string) => {
     switch (iconName) {
       case "HeartPulse":
@@ -58,12 +61,15 @@ export default async function HomePage() {
       {/* SECTION 1: HERO SECTION */}
       <section className="relative overflow-hidden hero-gradient pt-8 pb-16 lg:py-20 border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             {/* Left Column: Headline and CTAs */}
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-100/80 border border-teal-200 text-teal-800 text-xs font-semibold">
-                <Heart className="w-3.5 h-3.5 text-teal-600 fill-teal-600" />
-                <span>Dedicated Home Healthcare & Attendant Support</span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-100/90 border border-teal-200 text-teal-900 text-xs font-bold shadow-xs">
+                <span className="flex h-2 w-2 relative">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-600"></span>
+                </span>
+                <span>24/7 Home Care Coordination &amp; Patient Attendants</span>
               </div>
 
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
@@ -75,30 +81,36 @@ export default async function HomePage() {
                   "Reliable home-care support designed to help individuals and families with everyday care, personal assistance, and support at home."}
               </p>
 
-              {/* CTAs */}
+              {/* Star Rating snippet */}
+              <div className="flex items-center justify-center lg:justify-start gap-2 text-xs font-semibold text-slate-700">
+                <div className="flex text-amber-400">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-amber-400" />
+                  ))}
+                </div>
+                <span>4.9 / 5 Rating</span>
+                <span className="text-slate-400">•</span>
+                <span className="text-teal-700 font-bold">Trusted by 500+ Families in Delhi NCR</span>
+              </div>
+
+              {/* Interactive CTAs */}
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5">
+                <HeroEnquiryAction />
                 <a
-                  href="#enquire"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 text-base font-bold text-white bg-teal-600 hover:bg-teal-700 rounded-xl shadow-md shadow-teal-600/30 hover:shadow-lg transition-all"
-                >
-                  <span>Enquire Now</span>
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-                <Link
-                  href="/contact-us"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 rounded-xl shadow-xs transition-colors"
+                  href={telLink}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-bold text-slate-800 bg-white hover:bg-slate-50 border border-slate-300 rounded-xl shadow-xs transition-colors"
                 >
                   <Phone className="w-4 h-4 text-teal-600" />
-                  <span>Contact Us</span>
-                </Link>
+                  <span>Call 24/7</span>
+                </a>
                 <a
                   href={waLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-semibold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl transition-colors"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-bold text-white bg-[#25D366] hover:bg-[#20bd5a] rounded-xl shadow-sm transition-colors"
                 >
-                  <MessageCircle className="w-4 h-4 text-emerald-600" />
-                  <span>WhatsApp</span>
+                  <WhatsAppIcon className="w-5 h-5 fill-white shrink-0" />
+                  <span>WhatsApp Us</span>
                 </a>
               </div>
 
@@ -107,34 +119,34 @@ export default async function HomePage() {
                 <div className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="text-xs font-bold text-slate-900">Personalized Care</h4>
-                    <p className="text-[11px] text-slate-500">Arranged around your family needs</p>
+                    <h4 className="text-xs font-bold text-slate-900">24/7 Availability</h4>
+                    <p className="text-[11px] text-slate-500">Day &amp; night shift arrangements</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="text-xs font-bold text-slate-900">Clear Communication</h4>
-                    <p className="text-[11px] text-slate-500">Honest availability discussions</p>
+                    <h4 className="text-xs font-bold text-slate-900">Honest Communication</h4>
+                    <p className="text-[11px] text-slate-500">Caregiver availability verified</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="text-xs font-bold text-slate-900">Direct Support</h4>
-                    <p className="text-[11px] text-slate-500">Dedicated phone & WhatsApp help</p>
+                    <h4 className="text-xs font-bold text-slate-900">Dedicated Attendants</h4>
+                    <p className="text-[11px] text-slate-500">Dignified, warm personal care</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Right Column: Hero Image */}
+            {/* Right Column: Hero Image (featuring authentic Indian caregiver holding hands with patient) */}
             <div className="lg:col-span-5">
               <div className="relative mx-auto max-w-md lg:max-w-none">
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-slate-100 aspect-16/10">
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-100 aspect-4/3">
                   <Image
-                    src="/images/hero-caregiver.jpg"
-                    alt="VR Healthcare compassionate home caregiver assisting a senior patient"
+                    src="/images/about-care.jpg"
+                    alt="Compassionate Indian home nurse assisting elderly patient at home"
                     fill
                     priority
                     className="object-cover"
@@ -142,13 +154,13 @@ export default async function HomePage() {
                   />
                 </div>
                 {/* Floating badge */}
-                <div className="absolute -bottom-5 -left-4 sm:left-4 bg-white/95 backdrop-blur-md p-3.5 rounded-xl shadow-lg border border-slate-200/80 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-teal-100 flex items-center justify-center text-teal-700">
+                <div className="absolute -bottom-4 -left-3 sm:left-4 bg-white/95 backdrop-blur-md p-3.5 rounded-2xl shadow-xl border border-slate-200/90 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-teal-100 flex items-center justify-center text-teal-700">
                     <Shield className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-slate-900">Attentive Home Support</div>
-                    <div className="text-[11px] text-slate-500">Dignity • Compassion • Comfort</div>
+                    <div className="text-xs font-bold text-slate-900">Verified Home Attendants</div>
+                    <div className="text-[11px] text-teal-700 font-semibold">24/7 Dedicated Support</div>
                   </div>
                 </div>
               </div>
@@ -162,7 +174,7 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-5 order-2 lg:order-1">
-              <div className="relative rounded-2xl overflow-hidden shadow-lg border border-slate-200 aspect-4/3">
+              <div className="relative rounded-3xl overflow-hidden shadow-lg border border-slate-200 aspect-4/3">
                 <Image
                   src="/images/about-care.jpg"
                   alt="Attentive caregiver supporting patient at VR Healthcare"
@@ -188,7 +200,7 @@ export default async function HomePage() {
                 Whether you need everyday support for an aging parent, assistance during recovery after a hospital discharge, or a trusted daily patient attendant, we coordinate non-clinical care with transparency and care.
               </p>
 
-              <div className="pt-2">
+              <div className="pt-2 flex flex-wrap gap-3">
                 <Link
                   href="/about-us"
                   className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-teal-800 bg-teal-50 hover:bg-teal-100 rounded-xl transition-colors"
@@ -196,16 +208,17 @@ export default async function HomePage() {
                   <span>Learn More About Us</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
+                <HeroEnquiryAction secondary />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 3: OUR SERVICES (6 Cards) */}
+      {/* SECTION 3: OUR SERVICES (Swipable on mobile, Grid on desktop) */}
       <section className="py-16 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-10">
             <div className="text-xs font-bold text-teal-700 tracking-wider uppercase mb-2">
               Our Services
             </div>
@@ -217,11 +230,12 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* User requested: Mobile swiping left/right */}
+          <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto pb-4 pt-1 snap-x snap-mandatory no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
             {services.map((service) => (
               <div
                 key={service.id}
-                className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs hover:shadow-md card-hover-effect flex flex-col justify-between"
+                className="min-w-[280px] sm:min-w-[320px] md:min-w-0 flex-1 snap-start bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs hover:shadow-md card-hover-effect flex flex-col justify-between"
               >
                 <div>
                   <div className="w-12 h-12 rounded-xl bg-teal-50 border border-teal-100 flex items-center justify-center mb-4">
@@ -242,25 +256,15 @@ export default async function HomePage() {
                   >
                     Learn More &rarr;
                   </Link>
-                  <a
-                    href="#enquire"
-                    className="px-3.5 py-1.5 text-xs font-bold text-teal-700 bg-teal-50 hover:bg-teal-100 rounded-lg transition-colors"
-                  >
-                    Enquire Now
-                  </a>
+                  {/* Direct enquiry button opening side drawer */}
+                  <ServiceCardAction serviceTitle={service.title} />
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="text-center mt-10">
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-2 text-sm font-bold text-teal-700 hover:text-teal-800 underline underline-offset-4"
-            >
-              <span>View detailed descriptions of all services</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+          <div className="md:hidden text-center text-[11px] text-slate-400 mt-2">
+            &larr; Swipe left/right to browse all 6 services &rarr;
           </div>
         </div>
       </section>
@@ -280,7 +284,7 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80">
               <div className="w-10 h-10 rounded-lg bg-teal-100 text-teal-700 flex items-center justify-center mb-3">
                 <Heart className="w-5 h-5" />
@@ -313,7 +317,7 @@ export default async function HomePage() {
 
             <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80">
               <div className="w-10 h-10 rounded-lg bg-teal-100 text-teal-700 flex items-center justify-center mb-3">
-                <MessageCircle className="w-5 h-5" />
+                <WhatsAppIcon className="w-5 h-5 fill-teal-600" />
               </div>
               <h3 className="text-base font-bold text-slate-900 mb-2">Clear Communication</h3>
               <p className="text-sm text-slate-600 leading-relaxed">
@@ -327,7 +331,7 @@ export default async function HomePage() {
               </div>
               <h3 className="text-base font-bold text-slate-900 mb-2">Care Coordination Support</h3>
               <p className="text-sm text-slate-600 leading-relaxed">
-                From your initial enquiry to ongoing check-ins, our coordination team is available to assist your family and address questions.
+                From your initial enquiry to ongoing check-ins, our coordination team is available 24/7 to assist your family and address questions.
               </p>
             </div>
 
@@ -344,10 +348,10 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 5: HOW IT WORKS (4 Simple Steps) */}
+      {/* SECTION 5: HOW IT WORKS (User specifically requested: Right & left scroll on phone) */}
       <section className="py-16 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-10">
             <div className="text-xs font-bold text-teal-700 tracking-wider uppercase mb-2">
               Straightforward Process
             </div>
@@ -359,18 +363,19 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs relative">
+          {/* User requested: Mobile swipe right and left */}
+          <div className="flex md:grid md:grid-cols-4 gap-4 sm:gap-6 overflow-x-auto pb-4 pt-1 snap-x snap-mandatory no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
+            <div className="min-w-[260px] sm:min-w-[300px] md:min-w-0 flex-1 snap-start bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs relative">
               <div className="w-9 h-9 rounded-full bg-teal-600 text-white font-bold flex items-center justify-center text-sm mb-4">
                 1
               </div>
               <h3 className="text-base font-bold text-slate-900 mb-1.5">Submit an Enquiry</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Share your contact details, service requirement, and general schedule preferences via our quick online form.
+                Share your contact details, service requirement, and schedule preferences via our quick online form or side drawer.
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs relative">
+            <div className="min-w-[260px] sm:min-w-[300px] md:min-w-0 flex-1 snap-start bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs relative">
               <div className="w-9 h-9 rounded-full bg-teal-600 text-white font-bold flex items-center justify-center text-sm mb-4">
                 2
               </div>
@@ -380,7 +385,7 @@ export default async function HomePage() {
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs relative">
+            <div className="min-w-[260px] sm:min-w-[300px] md:min-w-0 flex-1 snap-start bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs relative">
               <div className="w-9 h-9 rounded-full bg-teal-600 text-white font-bold flex items-center justify-center text-sm mb-4">
                 3
               </div>
@@ -390,57 +395,62 @@ export default async function HomePage() {
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs relative">
+            <div className="min-w-[260px] sm:min-w-[300px] md:min-w-0 flex-1 snap-start bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs relative">
               <div className="w-9 h-9 rounded-full bg-teal-600 text-white font-bold flex items-center justify-center text-sm mb-4">
                 4
               </div>
               <h3 className="text-base font-bold text-slate-900 mb-1.5">Arrange the Service</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Once requirements, dates, and terms are mutually agreed upon, your home-care attendant service is coordinated.
+                Once requirements, dates, and terms are mutually agreed upon, your home-care attendant service is scheduled.
               </p>
             </div>
+          </div>
+
+          <div className="md:hidden text-center text-[11px] text-slate-400 mt-2">
+            &larr; Swipe left/right to view all 4 steps &rarr;
           </div>
         </div>
       </section>
 
-      {/* SECTION 6: CALL TO ACTION BANNER */}
-      <section className="py-14 bg-gradient-to-r from-teal-700 via-teal-800 to-slate-900 text-white">
+      {/* SECTION 6: VERIFIED REVIEWS & RATINGS */}
+      <ReviewsSection />
+
+      {/* SECTION 7: CALL TO ACTION BANNER */}
+      <section className="py-14 bg-gradient-to-r from-teal-800 via-teal-900 to-slate-950 text-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight">
+          <div className="inline-block px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 text-xs font-bold uppercase tracking-wider">
+            24/7 Home Care Help Line
+          </div>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight">
             Looking for Reliable Home-Care Support?
           </h2>
-          <p className="text-slate-200 text-base max-w-2xl mx-auto leading-relaxed">
-            Tell us what kind of assistance you need, and our team can contact you to discuss the available options and confirm arrangements.
+          <p className="text-slate-200 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+            Tell us what kind of assistance you need, and our care team can contact you immediately to discuss the available options.
           </p>
 
-          <div className="pt-2 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="#enquire"
-              className="px-6 py-3 text-sm font-bold bg-white text-teal-800 hover:bg-slate-100 rounded-xl shadow-md transition-colors"
-            >
-              Submit an Enquiry
-            </a>
+          <div className="pt-2 flex flex-wrap items-center justify-center gap-3.5">
+            <HeroEnquiryAction />
             <a
               href={telLink}
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-bold bg-teal-600 hover:bg-teal-500 text-white rounded-xl shadow-md transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3.5 text-sm font-bold bg-white text-slate-900 hover:bg-slate-100 rounded-xl shadow-md transition-colors"
             >
-              <Phone className="w-4 h-4" />
-              <span>Call Us: {settings.phone}</span>
+              <Phone className="w-4 h-4 text-teal-600" />
+              <span>Call 24/7: {settings.phone}</span>
             </a>
             <a
               href={waLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-bold bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl shadow-md transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3.5 text-sm font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-xl shadow-md transition-colors"
             >
-              <MessageCircle className="w-4 h-4" />
-              <span>WhatsApp Us</span>
+              <WhatsAppIcon className="w-5 h-5 fill-white shrink-0" />
+              <span>Chat on WhatsApp</span>
             </a>
           </div>
         </div>
       </section>
 
-      {/* SECTION 7: FREQUENTLY ASKED QUESTIONS */}
+      {/* SECTION 8: FREQUENTLY ASKED QUESTIONS */}
       <section id="faq" className="py-16 bg-white border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-10">
@@ -459,7 +469,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 8: FINAL ENQUIRY FORM */}
+      {/* SECTION 9: FINAL IN-PAGE ENQUIRY FORM */}
       <section id="enquire" className="py-16 bg-slate-50 scroll-mt-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <EnquiryForm />
