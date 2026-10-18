@@ -44,11 +44,12 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Clean and validate phone: accept Indian 10-digit or valid international
-    const cleanedPhone = phone ? phone.replace(/[^0-9+]/g, "") : "";
-    if (!cleanedPhone || cleanedPhone.replace(/\D/g, "").length < 10) {
+    // Clean and validate phone: accept Indian or valid international digits
+    const cleanedPhone = phone ? phone.replace(/[^0-9+ ]/g, "").trim() : "";
+    const digitCount = cleanedPhone.replace(/\D/g, "").length;
+    if (!cleanedPhone || digitCount < 8 || digitCount > 15) {
       return NextResponse.json(
-        { error: "Please provide a valid 10-digit mobile number or phone number." },
+        { error: "Please provide a valid mobile or phone number." },
         { status: 400 }
       );
     }

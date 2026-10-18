@@ -31,6 +31,7 @@ export default function Navbar({
     { label: "Home", href: "/" },
     { label: "About Us", href: "/about-us" },
     { label: "Our Services", href: "/services" },
+    { label: "Care Blogs", href: "/blogs" },
     { label: "Contact Us", href: "/contact-us" },
   ];
 
@@ -57,7 +58,7 @@ export default function Navbar({
           </span>
           <span className="text-slate-300">•</span>
           <span className="text-slate-300">
-            📍 Serving Delhi NCR, Noida, Gurgaon, Ghaziabad & Surrounding Areas
+            📍 Dedicated Home Care Services Available All Over India
           </span>
           <span className="text-slate-300">•</span>
           <span className="text-emerald-400 font-semibold flex items-center gap-1.5">
@@ -78,7 +79,7 @@ export default function Navbar({
           </span>
           <span className="text-slate-300">•</span>
           <span className="text-slate-300">
-            📍 Serving Delhi NCR, Noida, Gurgaon, Ghaziabad & Surrounding Areas
+            📍 Dedicated Home Care Services Available All Over India
           </span>
           <span className="text-slate-300">•</span>
           <span className="text-emerald-400 font-semibold flex items-center gap-1.5">

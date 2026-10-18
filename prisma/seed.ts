@@ -38,8 +38,8 @@ async function main() {
       phone: "+91 98765 43210",
       whatsappNumber: "+91 98765 43210",
       email: "care@vrhealthcare.com",
-      serviceLocation: "Delhi NCR & Neighbouring Regions",
-      businessHours: "Monday - Sunday: 8:00 AM - 8:00 PM (Care Coordination Available)",
+      serviceLocation: "All Over India (Pan-India Care Coordination)",
+      businessHours: "24/7 Hours Support & Emergency Care Coordination",
       heroHeadline: "Compassionate Home Care for Your Loved Ones",
       heroSupporting:
         "Reliable home-care support designed to help individuals and families with everyday care, personal assistance, and support at home.",

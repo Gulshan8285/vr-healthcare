@@ -101,6 +101,11 @@ export default function Footer({ settings }: FooterProps) {
                 </Link>
               </li>
               <li>
+                <Link href="/blogs" className="text-slate-400 hover:text-teal-300 transition-colors">
+                  Care Guides & Blogs
+                </Link>
+              </li>
+              <li>
                 <Link href="/contact-us" className="text-slate-400 hover:text-teal-300 transition-colors">
                   Contact Us
                 </Link>
@@ -191,12 +196,8 @@ export default function Footer({ settings }: FooterProps) {
         {/* Bottom copyright and explicit Created by codeorbit.cloud */}
         <div className="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4 text-center sm:text-left">
           <div>
-            <p>
-              &copy; {currentYear} VR Healthcare. All rights reserved.
-            </p>
-            {/* Explicitly requested credit */}
-            <p className="text-[11px] text-slate-400 mt-0.5">
-              Website designed &amp; developed by{" "}
+            <p className="text-slate-400 text-xs">
+              &copy; 2026 VR Healthcare. All rights reserved. • Designed by{" "}
               <a
                 href="https://codeorbit.cloud"
                 target="_blank"

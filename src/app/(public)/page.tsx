@@ -15,6 +15,7 @@ import {
   CalendarCheck,
   Users,
   Star,
+  BookOpen,
 } from "lucide-react";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import EnquiryForm from "@/components/EnquiryForm";
@@ -23,6 +24,7 @@ import ReviewsSection from "@/components/ReviewsSection";
 import ServiceCardAction from "@/components/ServiceCardAction";
 import HeroEnquiryAction from "@/components/HeroEnquiryAction";
 import { getWebsiteSettings, getServices, getFAQs } from "@/lib/data";
+import { getAllBlogPosts } from "@/lib/blogs";
 
 export default async function HomePage() {
   const [settings, services, faqs] = await Promise.all([
@@ -30,6 +32,7 @@ export default async function HomePage() {
     getServices(),
     getFAQs(),
   ]);
+  const featuredBlogs = getAllBlogPosts().slice(0, 3);
 
   const telLink = `tel:${settings.phone.replace(/[^0-9+]/g, "")}`;
   const waClean = settings.whatsappNumber.replace(/[^0-9]/g, "");
@@ -90,28 +93,28 @@ export default async function HomePage() {
                 </div>
                 <span>4.9 / 5 Rating</span>
                 <span className="text-slate-400">•</span>
-                <span className="text-teal-700 font-bold">Trusted by 500+ Families in Delhi NCR</span>
+                <span className="text-teal-700 font-bold">Trusted by 500+ Families All Over India</span>
               </div>
 
-              {/* Interactive CTAs */}
-              <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5">
-                <HeroEnquiryAction />
-                <a
-                  href={telLink}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-bold text-slate-800 bg-white hover:bg-slate-50 border border-slate-300 rounded-xl shadow-xs transition-colors"
-                >
-                  <Phone className="w-4 h-4 text-teal-600" />
-                  <span>Call 24/7</span>
-                </a>
+              {/* Interactive CTAs: WhatsApp first, then Call 24/7, then Enquire */}
+              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3">
                 <a
                   href={waLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-bold text-white bg-[#25D366] hover:bg-[#20bd5a] rounded-xl shadow-sm transition-colors"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm sm:text-base font-bold text-white bg-[#25D366] hover:bg-[#20bd5a] rounded-xl shadow-md shadow-emerald-500/20 transition-all active:scale-98"
                 >
                   <WhatsAppIcon className="w-5 h-5 fill-white shrink-0" />
-                  <span>WhatsApp Us</span>
+                  <span>WhatsApp</span>
                 </a>
+                <a
+                  href={telLink}
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm sm:text-base font-bold text-slate-800 bg-white hover:bg-slate-50 border border-slate-300 rounded-xl shadow-xs transition-colors active:scale-98"
+                >
+                  <Phone className="w-4 h-4 text-teal-600" />
+                  <span>Call 24/7</span>
+                </a>
+                <HeroEnquiryAction />
               </div>
 
               {/* Reassuring Trust Highlights */}
@@ -469,8 +472,81 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 9: FINAL IN-PAGE ENQUIRY FORM */}
-      <section id="enquire" className="py-16 bg-slate-50 scroll-mt-20">
+      {/* SECTION 9: LATEST HEALTH & CARE GUIDES */}
+      <section className="py-16 bg-slate-50/75 border-b border-slate-200/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+            <div>
+              <div className="text-xs font-bold text-teal-700 tracking-wider uppercase mb-2 flex items-center gap-1.5">
+                <BookOpen className="w-4 h-4 text-teal-600" />
+                <span>Knowledge & Family Resources</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
+                Latest Health & Home-Care Guides
+              </h2>
+              <p className="text-sm text-slate-600 mt-2 max-w-xl">
+                Expert practical advice, recovery tips, and safety guidance curated to help families care for loved ones at home.
+              </p>
+            </div>
+            <div>
+              <Link
+                href="/blogs"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-teal-700 hover:text-teal-800 transition-colors group"
+              >
+                <span>View All Articles</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {featuredBlogs.map((post) => (
+              <article
+                key={post.slug}
+                className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs hover:shadow-md hover:border-teal-300 transition-all flex flex-col justify-between group"
+              >
+                <div>
+                  <div className="flex items-center justify-between text-xs text-slate-500 mb-3">
+                    <span className="inline-block px-2.5 py-1 rounded-full bg-teal-50 text-teal-700 font-semibold text-[11px]">
+                      {post.category}
+                    </span>
+                    <span className="flex items-center gap-1 text-[11px]">
+                      <Clock className="w-3 h-3 text-slate-400" />
+                      {post.readTime}
+                    </span>
+                  </div>
+
+                  <h3 className="text-lg font-bold text-slate-900 group-hover:text-teal-700 transition-colors line-clamp-2 mb-2.5 leading-snug">
+                    <Link href={`/blogs/${post.slug}`}>
+                      {post.title}
+                    </Link>
+                  </h3>
+
+                  <p className="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed mb-6">
+                    {post.summary}
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                  <span className="text-[11px] text-slate-400 font-medium">
+                    {post.publishDate}
+                  </span>
+                  <Link
+                    href={`/blogs/${post.slug}`}
+                    className="inline-flex items-center gap-1 text-xs font-bold text-teal-700 group-hover:text-teal-800"
+                  >
+                    <span>Read Guide</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 10: FINAL IN-PAGE ENQUIRY FORM */}
+      <section id="enquire" className="py-16 bg-white scroll-mt-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <EnquiryForm />
         </div>
