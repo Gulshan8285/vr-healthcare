@@ -193,16 +193,19 @@ export default function Footer({ settings }: FooterProps) {
           <strong>Service Notice:</strong> Non-clinical attendants provide everyday home care assistance. Medical procedures and clinical treatments must strictly be administered by certified doctors.
         </div>
 
-        {/* Bottom copyright and explicit Created by codeorbit.cloud */}
-        <div className="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4 text-center sm:text-left">
-          <div>
+        {/* Bottom copyright and cleanly formatted Designed by credit */}
+        <div className="pt-6 border-t border-slate-800/80 flex flex-col md:flex-row items-center justify-between text-xs text-slate-400 gap-3 text-center md:text-left">
+          <div className="space-y-1">
             <p className="text-slate-400 text-xs">
-              &copy; 2026 VR Healthcare. All rights reserved. • Designed by{" "}
+              &copy; 2026 VR Healthcare. All rights reserved.
+            </p>
+            <p className="text-[11px] text-slate-500">
+              Designed by{" "}
               <a
                 href="https://codeorbit.cloud"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-teal-400 font-bold hover:text-teal-300 underline underline-offset-2"
+                className="text-teal-400 font-semibold hover:text-teal-300 transition-colors"
               >
                 codeorbit.cloud
               </a>

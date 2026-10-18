@@ -145,27 +145,27 @@ export default function Navbar({
           <div className="flex md:hidden items-center gap-2">
             <a
               href={telLink}
-              className="p-2 text-teal-700 bg-teal-50 rounded-lg hover:bg-teal-100 transition-colors"
+              className="w-9 h-9 flex items-center justify-center text-teal-700 bg-teal-50 rounded-full hover:bg-teal-100 transition-colors shadow-2xs"
               aria-label="Call VR Healthcare"
             >
-              <Phone className="w-5 h-5" />
+              <Phone className="w-4 h-4" />
             </a>
             <a
               href={waLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-emerald-700 bg-emerald-50 rounded-lg hover:bg-emerald-100 transition-colors"
+              className="w-9 h-9 flex items-center justify-center text-emerald-700 bg-emerald-50 rounded-full hover:bg-emerald-100 transition-colors shadow-2xs"
               aria-label="WhatsApp VR Healthcare"
             >
-              <WhatsAppIcon className="w-5 h-5 fill-[#25D366]" />
+              <WhatsAppIcon className="w-4 h-4 fill-[#25D366]" />
             </a>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               type="button"
-              className="p-2 rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-100 focus:outline-none"
+              className="w-9 h-9 flex items-center justify-center rounded-full text-slate-700 hover:text-slate-900 hover:bg-slate-100 focus:outline-none"
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>

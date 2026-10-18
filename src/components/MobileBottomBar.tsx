@@ -21,36 +21,46 @@ export default function MobileBottomBar({
   const waLink = `https://wa.me/${waClean}?text=${waMessage}`;
 
   return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200/90 px-3 py-2.5 shadow-2xl flex items-center justify-between gap-2">
-      {/* 24/7 Call button */}
+    <aside
+      aria-label="Quick mobile assistance"
+      className="md:hidden fixed bottom-6 right-3.5 z-40 flex flex-col items-end gap-2 pointer-events-none"
+    >
+      {/* 24/7 Quick Call */}
       <a
         href={telLink}
-        className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-2 bg-slate-900 text-white rounded-xl text-xs font-bold active:scale-95 transition-transform shadow-xs"
+        aria-label="Call 24/7 Helpline"
+        className="pointer-events-auto inline-flex items-center gap-1.5 py-2 px-3 bg-slate-950/90 hover:bg-slate-900 text-white rounded-full text-[11px] font-bold shadow-lg shadow-slate-950/20 backdrop-blur-md border border-slate-700/50 active:scale-95 transition-all"
       >
         <Phone className="w-3.5 h-3.5 text-teal-400" />
         <span>Call 24/7</span>
       </a>
 
-      {/* Official WhatsApp button */}
-      <a
-        href={waLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-2 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-xl text-xs font-bold active:scale-95 transition-transform shadow-xs"
-      >
-        <WhatsAppIcon className="w-4 h-4 fill-white shrink-0" />
-        <span>WhatsApp</span>
-      </a>
-
-      {/* Instant Enquiry Drawer button */}
+      {/* Quick Enquiry Drawer */}
       <button
         onClick={() => openEnquiryDrawer()}
         type="button"
-        className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-2 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-xs font-bold active:scale-95 transition-transform shadow-xs"
+        aria-label="Open Home Care Enquiry"
+        className="pointer-events-auto inline-flex items-center gap-1.5 py-2 px-3 bg-teal-600 hover:bg-teal-700 text-white rounded-full text-[11px] font-bold shadow-lg shadow-teal-700/25 backdrop-blur-md border border-teal-400/40 active:scale-95 transition-all"
       >
         <CalendarPlus className="w-3.5 h-3.5 text-white" />
         <span>Enquire</span>
       </button>
-    </div>
+
+      {/* Primary WhatsApp Action with live pulse */}
+      <a
+        href={waLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat on WhatsApp"
+        className="pointer-events-auto relative inline-flex items-center gap-2 py-2.5 px-3.5 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-full text-xs font-extrabold shadow-xl shadow-emerald-500/35 active:scale-95 transition-all"
+      >
+        <span className="absolute -top-1 -right-1 flex h-3 w-3">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-200"></span>
+        </span>
+        <WhatsAppIcon className="w-4 h-4 fill-white shrink-0" />
+        <span>WhatsApp</span>
+      </a>
+    </aside>
   );
 }

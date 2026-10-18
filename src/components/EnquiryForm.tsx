@@ -53,6 +53,10 @@ export default function EnquiryForm({
   const [submissionResult, setSubmissionResult] = useState<{
     referenceNumber: string;
     message: string;
+    customerName: string;
+    phone: string;
+    service: string;
+    preferredContactMethod: string;
   } | null>(null);
 
   const selectedCountry = COUNTRY_CODES.find((c) => c.code === countryCode) || COUNTRY_CODES[0];
@@ -131,7 +135,21 @@ export default function EnquiryForm({
       setSubmissionResult({
         referenceNumber: data.referenceNumber,
         message: data.message || "Your enquiry has been received successfully.",
+        customerName: formData.customerName,
+        phone: fullPhoneNumber,
+        service: formData.requiredService,
+        preferredContactMethod: formData.preferredContactMethod,
       });
+
+      // Auto-open WhatsApp if preferred contact method is whatsapp
+      if (formData.preferredContactMethod === "whatsapp") {
+        const text = encodeURIComponent(
+          `Hello VR Healthcare, I submitted an enquiry.\n\n📋 *Ref ID:* ${data.referenceNumber}\n👤 *Name:* ${formData.customerName}\n🩺 *Service:* ${formData.requiredService}\n📞 *Phone:* ${fullPhoneNumber}\n\nPlease check caregiver availability for our family.`
+        );
+        if (typeof window !== "undefined") {
+          window.open(`https://wa.me/919876543210?text=${text}`, "_blank", "noopener,noreferrer");
+        }
+      }
 
       setFormData({
         customerName: "",
@@ -153,6 +171,11 @@ export default function EnquiryForm({
   };
 
   if (submissionResult) {
+    const waText = encodeURIComponent(
+      `Hello VR Healthcare, I submitted a care enquiry.\n\n📋 *Ref ID:* ${submissionResult.referenceNumber}\n👤 *Name:* ${submissionResult.customerName}\n🩺 *Service:* ${submissionResult.service}\n📞 *Phone:* ${submissionResult.phone}\n\nPlease confirm caregiver availability.`
+    );
+    const waLink = `https://wa.me/919876543210?text=${waText}`;
+
     return (
       <div className={`bg-white rounded-3xl p-6 sm:p-8 border border-emerald-200 shadow-xl ${className}`}>
         <div className="flex flex-col items-center text-center space-y-4">
@@ -183,10 +206,31 @@ export default function EnquiryForm({
             </p>
           </div>
 
+          {/* User Requested: Direct WhatsApp connection */}
+          <div className="w-full max-w-sm space-y-2 pt-1">
+            <a
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold rounded-2xl shadow-md text-xs sm:text-sm transition-all active:scale-98"
+            >
+              <WhatsAppIcon className="w-4 h-4 fill-white shrink-0" />
+              <span>Connect on WhatsApp Now</span>
+            </a>
+
+            <a
+              href="tel:+919876543210"
+              className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-2xl text-xs sm:text-sm transition-all active:scale-98"
+            >
+              <Phone className="w-3.5 h-3.5 text-teal-400" />
+              <span>Call 24/7 Support: +91 98765 43210</span>
+            </a>
+          </div>
+
           <button
             onClick={() => setSubmissionResult(null)}
             type="button"
-            className="text-xs sm:text-sm font-bold text-teal-700 hover:text-teal-900 underline underline-offset-4 pt-1"
+            className="text-xs sm:text-sm font-bold text-teal-700 hover:text-teal-900 underline underline-offset-4 pt-2"
           >
             Submit Another Request
           </button>
@@ -284,16 +328,16 @@ export default function EnquiryForm({
                 pattern="[0-9]*"
                 required
                 maxLength={14}
-                placeholder={`e.g. ${countryCode === "+91" ? "9876543210" : "Phone number"}`}
+                placeholder={countryCode === "+91" ? "10-digit number" : "Phone number"}
                 value={formData.phone}
                 onChange={handlePhoneInput}
-                className={`w-full px-4 py-2.5 sm:py-3 text-sm bg-slate-50 border rounded-2xl focus:bg-white focus:outline-none focus:ring-2 transition-all font-mono ${
+                className={`w-full pl-3.5 pr-11 py-2.5 sm:py-3 text-sm bg-slate-50 border rounded-2xl focus:bg-white focus:outline-none focus:ring-2 transition-all font-mono ${
                   fieldErrors.phone
                     ? "border-rose-400 focus:ring-rose-200"
                     : "border-slate-300 focus:border-teal-500 focus:ring-teal-100"
                 }`}
               />
-              <Phone className="w-4 h-4 text-slate-400 absolute right-3.5 top-3.5" />
+              <Phone className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             </div>
           </div>
           {fieldErrors.phone && (

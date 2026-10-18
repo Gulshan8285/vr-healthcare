@@ -84,16 +84,20 @@ export default async function HomePage() {
                   "Reliable home-care support designed to help individuals and families with everyday care, personal assistance, and support at home."}
               </p>
 
-              {/* Star Rating snippet */}
-              <div className="flex items-center justify-center lg:justify-start gap-2 text-xs font-semibold text-slate-700">
-                <div className="flex text-amber-400">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amber-400" />
-                  ))}
+              {/* Sleek Trust & Rating Pill */}
+              <div className="flex items-center justify-center lg:justify-start">
+                <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-teal-50/80 border border-teal-200/70 text-xs shadow-2xs">
+                  <div className="flex items-center gap-1">
+                    <div className="flex text-amber-500">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                      ))}
+                    </div>
+                    <span className="font-extrabold text-slate-900 tracking-tight">4.9/5</span>
+                  </div>
+                  <span className="w-1 h-1 rounded-full bg-teal-300" />
+                  <span className="font-bold text-teal-900 tracking-tight">500+ Families Supported</span>
                 </div>
-                <span>4.9 / 5 Rating</span>
-                <span className="text-slate-400">•</span>
-                <span className="text-teal-700 font-bold">Trusted by 500+ Families All Over India</span>
               </div>
 
               {/* Interactive CTAs: WhatsApp first, then Call 24/7, then Enquire */}
@@ -143,13 +147,13 @@ export default async function HomePage() {
               </div>
             </div>
 
-            {/* Right Column: Hero Image (featuring authentic Indian caregiver holding hands with patient) */}
+            {/* Right Column: Hero Image (featuring authentic Indian grandparents & family) */}
             <div className="lg:col-span-5">
               <div className="relative mx-auto max-w-md lg:max-w-none">
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-100 aspect-4/3">
                   <Image
-                    src="/images/about-care.jpg"
-                    alt="Compassionate Indian home nurse assisting elderly patient at home"
+                    src="/images/hero-caregiver.jpg"
+                    alt="Happy Indian grandparents and family supported by VR Healthcare home care services"
                     fill
                     priority
                     className="object-cover"
