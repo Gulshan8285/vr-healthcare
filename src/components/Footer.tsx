@@ -228,13 +228,6 @@ export default function Footer({ settings }: FooterProps) {
             <Link href="/terms-and-conditions" className="hover:text-slate-300 transition-colors">
               Terms &amp; Conditions
             </Link>
-            <span>•</span>
-            <Link
-              href="/admin/login"
-              className="text-slate-400 hover:text-teal-400 transition-colors"
-            >
-              Staff Portal
-            </Link>
           </div>
         </div>
       </div>
