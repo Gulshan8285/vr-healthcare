@@ -1,22 +1,19 @@
 import { MetadataRoute } from "next";
-import { getServices } from "@/lib/data";
+import { getAllBlogPosts } from "@/lib/blogs";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://vrhealthcare.com";
-  const services = await getServices();
+  const rawUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
+  const siteUrl = (!rawUrl || rawUrl.includes("localhost"))
+    ? "https://www.vrhealthcare.space"
+    : rawUrl.replace(/\/$/, "");
+  const blogs = getAllBlogPosts();
 
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: `${siteUrl}`,
       lastModified: new Date(),
-      changeFrequency: "weekly",
+      changeFrequency: "daily",
       priority: 1.0,
-    },
-    {
-      url: `${siteUrl}/about-us`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
     },
     {
       url: `${siteUrl}/services`,
@@ -25,10 +22,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
     {
-      url: `${siteUrl}/contact-us`,
+      url: `${siteUrl}/about-us`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blogs`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/contact-us`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
     {
       url: `${siteUrl}/privacy-policy`,
@@ -44,12 +53,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  const servicePages: MetadataRoute.Sitemap = services.map((s) => ({
-    url: `${siteUrl}/services#${s.slug}`,
-    lastModified: s.updatedAt,
+  const blogPages: MetadataRoute.Sitemap = blogs.map((blog) => ({
+    url: `${siteUrl}/blogs/${blog.slug}`,
+    lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 0.7,
   }));
 
-  return [...staticPages, ...servicePages];
+  return [...staticPages, ...blogPages];
 }

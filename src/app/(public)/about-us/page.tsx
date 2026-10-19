@@ -2,6 +2,22 @@ import Image from "next/image";
 import Link from "next/link";
 import { getWebsiteSettings } from "@/lib/data";
 import { Heart, ShieldCheck, Users, Eye, CheckCircle2, ArrowRight } from "lucide-react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Us | Compassionate Home Care & Caregiver Coordination",
+  description:
+    "Learn about VR Healthcare's mission, care philosophy, and commitment to transparent, dependable home-care assistance and patient attendants across India.",
+  alternates: {
+    canonical: "/about-us",
+  },
+  openGraph: {
+    title: "About VR Healthcare | Compassionate Home Care",
+    description:
+      "Our mission is to help families manage everyday care needs with dignity, comfort, and peace of mind.",
+    url: "https://www.vrhealthcare.space/about-us",
+  },
+};
 
 export default async function AboutUsPage() {
   const settings = await getWebsiteSettings();

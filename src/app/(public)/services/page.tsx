@@ -16,6 +16,22 @@ import {
 } from "lucide-react";
 import ServiceCardAction from "@/components/ServiceCardAction";
 import HeroEnquiryAction from "@/components/HeroEnquiryAction";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Home Healthcare Services & Patient Attendants",
+  description:
+    "Explore VR Healthcare's trusted home-care support: Patient Care Attendants, Elderly Assistance, Post-Hospital Convalescence, Day & Night Care, and Housekeeping.",
+  alternates: {
+    canonical: "/services",
+  },
+  openGraph: {
+    title: "Home Healthcare Services | VR Healthcare",
+    description:
+      "Compassionate home-care assistance, patient attendants, and elderly support designed around family needs.",
+    url: "https://www.vrhealthcare.space/services",
+  },
+};
 
 export default async function ServicesPage() {
   const services = await getServices();

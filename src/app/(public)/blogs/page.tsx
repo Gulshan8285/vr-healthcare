@@ -7,6 +7,15 @@ export const metadata = {
   title: "Home Healthcare & Eldercare Guides | VR Healthcare",
   description:
     "Expert practical guides on home care assistance, elderly routine management, fall prevention, and post-hospital recovery care for families.",
+  alternates: {
+    canonical: "/blogs",
+  },
+  openGraph: {
+    title: "Home Healthcare & Eldercare Guides | VR Healthcare",
+    description:
+      "Expert practical guides on home care assistance, elderly routine management, fall prevention, and post-hospital recovery care for families.",
+    url: "https://www.vrhealthcare.space/blogs",
+  },
 };
 
 export default function BlogsPage() {

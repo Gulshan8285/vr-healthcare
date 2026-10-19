@@ -23,6 +23,16 @@ export async function generateMetadata({
   return {
     title: `${post.title} | VR Healthcare Guides`,
     description: post.summary,
+    alternates: {
+      canonical: `/blogs/${post.slug}`,
+    },
+    openGraph: {
+      title: `${post.title} | VR Healthcare`,
+      description: post.summary,
+      type: "article",
+      publishedTime: post.publishDate,
+      authors: [post.author],
+    },
   };
 }
 

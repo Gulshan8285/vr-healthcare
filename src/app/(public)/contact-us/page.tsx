@@ -10,6 +10,22 @@ import {
   ShieldCheck,
   CheckCircle2,
 } from "lucide-react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact Us | 24/7 Care Coordination & Enquiries",
+  description:
+    "Contact VR Healthcare for home-care support, patient attendants, and elderly assistance. Direct Helpline: +91 94815 68203 / +91 85918 50947. Email: vrhealthcare@gmail.com.",
+  alternates: {
+    canonical: "/contact-us",
+  },
+  openGraph: {
+    title: "Contact VR Healthcare | 24/7 Home Care Coordination",
+    description:
+      "Reach our 24/7 care coordination desk for attendant availability and home care services across India.",
+    url: "https://www.vrhealthcare.space/contact-us",
+  },
+};
 
 export default async function ContactUsPage() {
   const settings = await getWebsiteSettings();
