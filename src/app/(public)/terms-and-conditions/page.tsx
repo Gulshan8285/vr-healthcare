@@ -45,7 +45,7 @@ Our attendants and caregivers provide supportive everyday care, mobility assista
 4. Shift Availability
 Daytime, nighttime, or extended care shifts are subject to caregiver availability in the specified residential area.
 
-For any questions about these terms, please contact care@vrhealthcare.com.
+For any questions about these terms, please contact vrhealthcare@gmail.com.
             `}
           </div>
         </div>

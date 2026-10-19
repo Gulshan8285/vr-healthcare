@@ -20,6 +20,7 @@ export default function AdminSettingsPage() {
     businessName: "",
     tagline: "",
     phone: "",
+    secondaryPhone: "",
     whatsappNumber: "",
     email: "",
     serviceLocation: "",
@@ -51,6 +52,7 @@ export default function AdminSettingsPage() {
             businessName: data.businessName || "",
             tagline: data.tagline || "",
             phone: data.phone || "",
+            secondaryPhone: data.secondaryPhone || "",
             whatsappNumber: data.whatsappNumber || "",
             email: data.email || "",
             serviceLocation: data.serviceLocation || "",
@@ -158,7 +160,7 @@ export default function AdminSettingsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-semibold text-slate-700 uppercase mb-1.5">
-                Official Business Phone (Call Dialer)
+                Official Business Phone (Priority 1 / Call Dialer)
               </label>
               <input
                 type="text"
@@ -171,7 +173,20 @@ export default function AdminSettingsPage() {
 
             <div>
               <label className="block text-xs font-semibold text-slate-700 uppercase mb-1.5">
-                WhatsApp Business Number
+                Secondary Phone (Priority 2 / Alternative)
+              </label>
+              <input
+                type="text"
+                value={formData.secondaryPhone}
+                onChange={(e) => setFormData({ ...formData, secondaryPhone: e.target.value })}
+                placeholder="+91 85918 50947"
+                className="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-100 focus:border-teal-500"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-700 uppercase mb-1.5">
+                WhatsApp Business Number (Priority 1)
               </label>
               <input
                 type="text"

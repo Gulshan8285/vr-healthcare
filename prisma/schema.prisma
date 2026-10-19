@@ -65,9 +65,10 @@ model WebsiteSettings {
   tagline          String   @default("Compassionate Home Care for Your Loved Ones")
   logoText         String   @default("VR Healthcare")
   logoUrl          String?
-  phone            String   @default("+91 98765 43210")
-  whatsappNumber   String   @default("+91 98765 43210")
-  email            String   @default("care@vrhealthcare.com")
+  phone            String   @default("+91 94815 68203")
+  secondaryPhone   String?  @default("+91 85918 50947")
+  whatsappNumber   String   @default("+91 94815 68203")
+  email            String   @default("vrhealthcare@gmail.com")
   serviceLocation  String   @default("Delhi NCR & Neighbouring Regions")
   businessHours    String   @default("Mon - Sun: 8:00 AM - 8:00 PM (Care Coordination Available)")
   

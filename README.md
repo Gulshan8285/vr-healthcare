@@ -91,7 +91,7 @@ DATABASE_URL="file:./dev.db"
 JWT_SECRET="vrhealthcare_super_secret_jwt_key_2026_change_in_production"
 INITIAL_ADMIN_EMAIL="admin@vrhealthcare.com"
 INITIAL_ADMIN_PASSWORD="Admin@VRHealth2026"
-ADMIN_NOTIFICATION_EMAIL="care@vrhealthcare.com"
+ADMIN_NOTIFICATION_EMAIL="vrhealthcare@gmail.com"
 NEXT_PUBLIC_SITE_URL="http://localhost:3000"
 ```
 

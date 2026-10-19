@@ -88,15 +88,16 @@ export default async function HomePage() {
               <div className="flex items-center justify-center lg:justify-start">
                 <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-teal-50/80 border border-teal-200/70 text-xs shadow-2xs">
                   <div className="flex items-center gap-1">
-                    <div className="flex text-amber-500">
-                      {[...Array(5)].map((_, i) => (
+                    <div className="flex items-center text-amber-500">
+                      {[...Array(4)].map((_, i) => (
                         <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                       ))}
+                      <Star className="w-3.5 h-3.5 text-amber-400/30" />
                     </div>
-                    <span className="font-extrabold text-slate-900 tracking-tight">4.9/5</span>
+                    <span className="font-extrabold text-slate-900 tracking-tight">4.1/5</span>
                   </div>
                   <span className="w-1 h-1 rounded-full bg-teal-300" />
-                  <span className="font-bold text-teal-900 tracking-tight">500+ Families Supported</span>
+                  <span className="font-bold text-teal-900 tracking-tight">126+ Families Supported</span>
                 </div>
               </div>
 

@@ -10,17 +10,20 @@ import { openEnquiryDrawer } from "./EnquiryDrawer";
 
 interface NavbarProps {
   phone?: string;
+  secondaryPhone?: string;
   whatsapp?: string;
 }
 
 export default function Navbar({
-  phone = "+91 98765 43210",
-  whatsapp = "+91 98765 43210",
+  phone = "+91 94815 68203",
+  secondaryPhone = "+91 85918 50947",
+  whatsapp = "+91 94815 68203",
 }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
   const telLink = `tel:${phone.replace(/[^0-9+]/g, "")}`;
+  const secTelLink = secondaryPhone ? `tel:${secondaryPhone.replace(/[^0-9+]/g, "")}` : null;
   const waClean = whatsapp.replace(/[^0-9]/g, "");
   const waMessage = encodeURIComponent(
     "Hello VR Healthcare, I would like to enquire about your home-care services."
@@ -50,7 +53,18 @@ export default function Navbar({
             <span className="font-bold text-white uppercase tracking-wider">24/7 Care Coordination Active</span>
           </span>
           <span className="text-slate-300">
-            📞 Immediate Assistance: <a href={telLink} className="font-bold text-teal-300 underline">{phone}</a>
+            📞 Immediate Assistance:{" "}
+            <a href={telLink} className="font-bold text-teal-300 underline hover:text-white transition-colors">
+              {phone}
+            </a>
+            {secondaryPhone && (
+              <>
+                {" / "}
+                <a href={secTelLink || "#"} className="font-bold text-teal-300 underline hover:text-white transition-colors">
+                  {secondaryPhone}
+                </a>
+              </>
+            )}
           </span>
           <span className="text-slate-300">•</span>
           <span className="text-slate-300">
@@ -71,7 +85,18 @@ export default function Navbar({
             <span className="font-bold text-white uppercase tracking-wider">24/7 Care Coordination Active</span>
           </span>
           <span className="text-slate-300">
-            📞 Immediate Assistance: <a href={telLink} className="font-bold text-teal-300 underline">{phone}</a>
+            📞 Immediate Assistance:{" "}
+            <a href={telLink} className="font-bold text-teal-300 underline hover:text-white transition-colors">
+              {phone}
+            </a>
+            {secondaryPhone && (
+              <>
+                {" / "}
+                <a href={secTelLink || "#"} className="font-bold text-teal-300 underline hover:text-white transition-colors">
+                  {secondaryPhone}
+                </a>
+              </>
+            )}
           </span>
           <span className="text-slate-300">•</span>
           <span className="text-slate-300">

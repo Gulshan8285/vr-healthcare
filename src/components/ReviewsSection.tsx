@@ -17,7 +17,7 @@ const REVIEWS: Review[] = [
     author: "Mrs. Sunita Kapoor",
     location: "Vasant Vihar, New Delhi",
     service: "Elderly Care & Daily Routine",
-    rating: 5,
+    rating: 4,
     date: "Verified Family Care",
     comment:
       "We arranged daytime attendant support for my 82-year-old mother. The attendant was extremely polite, punctual, and respectful with daily routines. VR Healthcare coordination gave our family immense relief.",
@@ -28,7 +28,7 @@ const REVIEWS: Review[] = [
     author: "Mr. Rajesh Malhotra",
     location: "DLF Phase 5, Gurgaon",
     service: "Post-Hospital Recovery Support",
-    rating: 5,
+    rating: 4,
     date: "Verified Family Care",
     comment:
       "Following my father's hip surgery, we urgently needed recovery help at home. The attendant helped him safely with bed-to-chair transfers and walking. Highly dependable and caring service.",
@@ -39,7 +39,7 @@ const REVIEWS: Review[] = [
     author: "Dr. Ananya Sen",
     location: "Sector 62, Noida",
     service: "Patient Attendant Assistance",
-    rating: 5,
+    rating: 4,
     date: "Verified Family Care",
     comment:
       "As a physician myself, I appreciate their honest approach. Clear discussion regarding caregiver availability, no false promises, and genuine compassion for patient dignity.",
@@ -50,7 +50,7 @@ const REVIEWS: Review[] = [
     author: "Vikram Singhania",
     location: "Dwarka Sector 11, New Delhi",
     service: "Day & Night Care Arrangements",
-    rating: 5,
+    rating: 4.5,
     date: "Verified Family Care",
     comment:
       "Contacted their 24/7 care coordination line when my uncle needed support. Within hours they checked location feasibility and coordinated a dedicated caregiver. Outstanding peace of mind.",
@@ -65,12 +65,13 @@ export default function ReviewsSection() {
         {/* Section Header with Overall Rating Badge */}
         <div className="text-center max-w-2xl mx-auto mb-12">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold mb-3">
-            <div className="flex text-amber-400">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-3.5 h-3.5 fill-amber-400" />
+            <div className="flex items-center text-amber-400">
+              {[...Array(4)].map((_, i) => (
+                <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
               ))}
+              <Star className="w-3.5 h-3.5 text-amber-400/30" />
             </div>
-            <span>4.9 / 5 Rating from Families</span>
+            <span>4.1 / 5 Rating from Families</span>
           </div>
 
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
@@ -91,9 +92,16 @@ export default function ReviewsSection() {
               <div>
                 {/* Top Stars & Quote icon */}
                 <div className="flex items-center justify-between mb-3">
-                  <div className="flex text-amber-400">
-                    {[...Array(review.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-400" />
+                  <div className="flex items-center text-amber-400">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`w-4 h-4 ${
+                          i < Math.floor(review.rating)
+                            ? "fill-amber-400 text-amber-400"
+                            : "text-amber-400/25"
+                        }`}
+                      />
                     ))}
                   </div>
                   <Quote className="w-5 h-5 text-teal-600/30" />

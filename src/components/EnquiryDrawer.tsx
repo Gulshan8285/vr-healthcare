@@ -90,8 +90,12 @@ export default function EnquiryDrawer() {
         {/* Drawer Footer note */}
         <div className="p-4 bg-slate-50 border-t border-slate-200 text-center text-xs text-slate-500">
           Prefer talking immediately? Call us 24/7 at{" "}
-          <a href="tel:+919876543210" className="text-teal-700 font-bold hover:underline">
-            +91 98765 43210
+          <a href="tel:+919481568203" className="text-teal-700 font-bold hover:underline">
+            +91 94815 68203
+          </a>
+          {" / "}
+          <a href="tel:+918591850947" className="text-teal-700 font-bold hover:underline">
+            +91 85918 50947
           </a>
         </div>
       </div>

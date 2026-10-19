@@ -14,15 +14,26 @@ export default async function PublicLayout({
 
   return (
     <div className="flex min-h-screen flex-col bg-white">
-      <Navbar phone={settings.phone} whatsapp={settings.whatsappNumber} />
+      <Navbar
+        phone={settings.phone}
+        secondaryPhone={settings.secondaryPhone || undefined}
+        whatsapp={settings.whatsappNumber}
+      />
       <main className="flex-grow">{children}</main>
       <Footer settings={settings} />
 
-      {/* Floating WhatsApp for desktop & tablet */}
-      <WhatsAppFloatingButton whatsappNumber={settings.whatsappNumber} />
+      {/* Floating WhatsApp and Call for desktop & tablet */}
+      <WhatsAppFloatingButton
+        phone={settings.phone}
+        whatsappNumber={settings.whatsappNumber}
+      />
 
       {/* Sticky Quick-Action Bar for mobile devices */}
-      <MobileBottomBar phone={settings.phone} whatsapp={settings.whatsappNumber} />
+      <MobileBottomBar
+        phone={settings.phone}
+        secondaryPhone={settings.secondaryPhone || undefined}
+        whatsapp={settings.whatsappNumber}
+      />
 
       {/* Global Slide-Over Enquiry Drawer */}
       <EnquiryDrawer />

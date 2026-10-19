@@ -51,7 +51,7 @@ Your information is strictly used for:
 - We do not collect detailed clinical health records or sensitive diagnosis information through public website forms.
 - Data is stored securely and accessible only to authorized coordination personnel.
 
-If you have questions regarding this policy, please contact us at care@vrhealthcare.com.
+If you have questions regarding this policy, please contact us at vrhealthcare@gmail.com.
             `}
           </div>
         </div>

@@ -14,13 +14,15 @@ import {
 export default async function ContactUsPage() {
   const settings = await getWebsiteSettings();
 
-  const phone = settings.phone || "+91 98765 43210";
-  const whatsapp = settings.whatsappNumber || "+91 98765 43210";
-  const email = settings.email || "care@vrhealthcare.com";
+  const phone = settings.phone || "+91 94815 68203";
+  const secondaryPhone = settings.secondaryPhone || "+91 85918 50947";
+  const whatsapp = settings.whatsappNumber || "+91 94815 68203";
+  const email = settings.email || "vrhealthcare@gmail.com";
   const location = settings.serviceLocation || "Delhi NCR & Neighbouring Regions";
   const hours = settings.businessHours || "Monday - Sunday: 8:00 AM - 8:00 PM";
 
   const telLink = `tel:${phone.replace(/[^0-9+]/g, "")}`;
+  const secTelLink = secondaryPhone ? `tel:${secondaryPhone.replace(/[^0-9+]/g, "")}` : null;
   const waClean = whatsapp.replace(/[^0-9]/g, "");
   const waMessage = encodeURIComponent(
     "Hello VR Healthcare, I would like to enquire about your home-care services."
@@ -61,17 +63,48 @@ export default async function ContactUsPage() {
               <div className="w-12 h-12 rounded-xl bg-teal-50 border border-teal-100 flex items-center justify-center text-teal-700 shrink-0">
                 <Phone className="w-6 h-6" />
               </div>
-              <div className="flex-1">
-                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-                  Direct Phone Support
-                </span>
-                <div className="text-lg font-bold text-slate-900 mt-0.5">
-                  <a href={telLink} className="hover:text-teal-700 transition-colors">
-                    {phone}
-                  </a>
+              <div className="flex-1 space-y-3">
+                <div>
+                  <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                    Direct Phone Support (24/7)
+                  </span>
+                  <div className="mt-1 flex items-center justify-between">
+                    <div>
+                      <span className="text-[10px] uppercase font-bold text-teal-700 block">Priority 1 (Primary)</span>
+                      <a href={telLink} className="text-lg font-bold text-slate-900 hover:text-teal-700 transition-colors">
+                        {phone}
+                      </a>
+                    </div>
+                    <a
+                      href={telLink}
+                      className="px-2.5 py-1 text-xs font-bold text-teal-800 bg-teal-50 hover:bg-teal-100 border border-teal-200 rounded-lg transition-colors"
+                    >
+                      Call Now
+                    </a>
+                  </div>
                 </div>
-                <p className="text-xs text-slate-500 mt-1">
-                  Click to call for immediate care queries during business hours.
+
+                {secondaryPhone && (
+                  <div className="pt-2.5 border-t border-slate-100 flex items-center justify-between">
+                    <div>
+                      <span className="text-[10px] uppercase font-bold text-slate-500 block">Priority 2 (Alternative)</span>
+                      <a href={secTelLink || "#"} className="text-base font-bold text-slate-800 hover:text-teal-700 transition-colors">
+                        {secondaryPhone}
+                      </a>
+                    </div>
+                    {secTelLink && (
+                      <a
+                        href={secTelLink}
+                        className="px-2.5 py-1 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-lg transition-colors"
+                      >
+                        Call
+                      </a>
+                    )}
+                  </div>
+                )}
+
+                <p className="text-xs text-slate-500 pt-1">
+                  Click to call for immediate care queries and attendant coordination.
                 </p>
               </div>
             </div>

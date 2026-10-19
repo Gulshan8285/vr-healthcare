@@ -5,21 +5,23 @@ import { Phone, Mail, MapPin, Clock, ShieldCheck, Heart } from "lucide-react";
 
 interface FooterProps {
   settings?: {
-    businessName?: string;
-    phone?: string;
-    whatsappNumber?: string;
-    email?: string;
-    serviceLocation?: string;
-    businessHours?: string;
-    footerText?: string;
+    businessName?: string | null;
+    phone?: string | null;
+    secondaryPhone?: string | null;
+    whatsappNumber?: string | null;
+    email?: string | null;
+    serviceLocation?: string | null;
+    businessHours?: string | null;
+    footerText?: string | null;
   };
 }
 
 export default function Footer({ settings }: FooterProps) {
   const currentYear = new Date().getFullYear();
-  const phone = settings?.phone || "+91 98765 43210";
-  const whatsapp = settings?.whatsappNumber || "+91 98765 43210";
-  const email = settings?.email || "care@vrhealthcare.com";
+  const phone = settings?.phone || "+91 94815 68203";
+  const secondaryPhone = settings?.secondaryPhone || "+91 85918 50947";
+  const whatsapp = settings?.whatsappNumber || "+91 94815 68203";
+  const email = settings?.email || "vrhealthcare@gmail.com";
   const location = settings?.serviceLocation || "Delhi NCR & Neighbouring Regions";
   const hours = settings?.businessHours || "24/7 Care Coordination Available";
   const footerText =
@@ -27,6 +29,7 @@ export default function Footer({ settings }: FooterProps) {
     "VR Healthcare provides dependable, compassionate home-care support, patient attendants, and elderly assistance designed around your family's needs.";
 
   const telLink = `tel:${phone.replace(/[^0-9+]/g, "")}`;
+  const secTelLink = secondaryPhone ? `tel:${secondaryPhone.replace(/[^0-9+]/g, "")}` : null;
   const waClean = whatsapp.replace(/[^0-9]/g, "");
   const waMessage = encodeURIComponent(
     "Hello VR Healthcare, I would like to enquire about your home-care services."
@@ -136,11 +139,16 @@ export default function Footer({ settings }: FooterProps) {
             <div className="space-y-3.5 text-xs sm:text-sm">
               <div className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-teal-400 mt-0.5 shrink-0" />
-                <div>
+                <div className="space-y-1">
                   <span className="block text-[11px] text-slate-400 font-medium">Direct Phone (24/7)</span>
-                  <a href={telLink} className="text-white font-bold hover:text-teal-300 transition-colors">
-                    {phone}
+                  <a href={telLink} className="text-white font-bold hover:text-teal-300 transition-colors block">
+                    {phone} <span className="text-[10px] font-normal text-teal-400">(Priority 1)</span>
                   </a>
+                  {secondaryPhone && (
+                    <a href={secTelLink || "#"} className="text-slate-300 font-semibold hover:text-teal-300 transition-colors block text-xs">
+                      {secondaryPhone} <span className="text-[10px] font-normal text-slate-400">(Priority 2)</span>
+                    </a>
+                  )}
                 </div>
               </div>
 

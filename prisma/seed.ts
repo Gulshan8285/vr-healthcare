@@ -35,9 +35,10 @@ async function main() {
       businessName: "VR Healthcare",
       tagline: "Compassionate Home Care for Your Loved Ones",
       logoText: "VR Healthcare",
-      phone: "+91 98765 43210",
-      whatsappNumber: "+91 98765 43210",
-      email: "care@vrhealthcare.com",
+      phone: "+91 94815 68203",
+      secondaryPhone: "+91 85918 50947",
+      whatsappNumber: "+91 94815 68203",
+      email: "vrhealthcare@gmail.com",
       serviceLocation: "All Over India (Pan-India Care Coordination)",
       businessHours: "24/7 Hours Support & Emergency Care Coordination",
       heroHeadline: "Compassionate Home Care for Your Loved Ones",
@@ -270,7 +271,7 @@ Your information is used solely to:
 - We do not collect unnecessary confidential medical records through public online forms.
 
 ### Contact Us
-If you have questions regarding this privacy policy or wish to update your details, please reach out via our contact page or email us at care@vrhealthcare.com.`,
+If you have questions regarding this privacy policy or wish to update your details, please reach out via our contact page or email us at vrhealthcare@gmail.com.`,
     },
   });
 

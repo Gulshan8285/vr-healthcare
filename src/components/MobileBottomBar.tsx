@@ -6,12 +6,14 @@ import { openEnquiryDrawer } from "./EnquiryDrawer";
 
 interface MobileBottomBarProps {
   phone?: string;
+  secondaryPhone?: string;
   whatsapp?: string;
 }
 
 export default function MobileBottomBar({
-  phone = "+91 98765 43210",
-  whatsapp = "+91 98765 43210",
+  phone = "+91 94815 68203",
+  secondaryPhone = "+91 85918 50947",
+  whatsapp = "+91 94815 68203",
 }: MobileBottomBarProps) {
   const telLink = `tel:${phone.replace(/[^0-9+]/g, "")}`;
   const waClean = whatsapp.replace(/[^0-9]/g, "");

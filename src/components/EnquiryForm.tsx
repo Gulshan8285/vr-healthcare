@@ -147,7 +147,7 @@ export default function EnquiryForm({
           `Hello VR Healthcare, I submitted an enquiry.\n\n📋 *Ref ID:* ${data.referenceNumber}\n👤 *Name:* ${formData.customerName}\n🩺 *Service:* ${formData.requiredService}\n📞 *Phone:* ${fullPhoneNumber}\n\nPlease check caregiver availability for our family.`
         );
         if (typeof window !== "undefined") {
-          window.open(`https://wa.me/919876543210?text=${text}`, "_blank", "noopener,noreferrer");
+          window.open(`https://wa.me/919481568203?text=${text}`, "_blank", "noopener,noreferrer");
         }
       }
 
@@ -174,7 +174,7 @@ export default function EnquiryForm({
     const waText = encodeURIComponent(
       `Hello VR Healthcare, I submitted a care enquiry.\n\n📋 *Ref ID:* ${submissionResult.referenceNumber}\n👤 *Name:* ${submissionResult.customerName}\n🩺 *Service:* ${submissionResult.service}\n📞 *Phone:* ${submissionResult.phone}\n\nPlease confirm caregiver availability.`
     );
-    const waLink = `https://wa.me/919876543210?text=${waText}`;
+    const waLink = `https://wa.me/919481568203?text=${waText}`;
 
     return (
       <div className={`bg-white rounded-3xl p-6 sm:p-8 border border-emerald-200 shadow-xl ${className}`}>
@@ -219,11 +219,11 @@ export default function EnquiryForm({
             </a>
 
             <a
-              href="tel:+919876543210"
+              href="tel:+919481568203"
               className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-2xl text-xs sm:text-sm transition-all active:scale-98"
             >
               <Phone className="w-3.5 h-3.5 text-teal-400" />
-              <span>Call 24/7 Support: +91 98765 43210</span>
+              <span>Call 24/7: +91 94815 68203</span>
             </a>
           </div>
 
